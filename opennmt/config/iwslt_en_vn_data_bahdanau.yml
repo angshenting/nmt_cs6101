@@ -1,0 +1,39 @@
+model_dir: ./en_vi_bahdanau_run/
+
+data:
+  train_features_file: /home/s.ang/nmt_cs6101/data/iwslt_2015_en_vn/train.en
+  train_labels_file: /home/s.ang/nmt_cs6101/data/iwslt_2015_en_vn/train.vi
+  eval_features_file: /home/s.ang/nmt_cs6101/data/iwslt_2015_en_vn/tst2013.en
+  eval_labels_file: /home/s.ang/nmt_cs6101/data/iwslt_2015_en_vn/tst2013.vi
+  source_vocabulary: /home/s.ang/nmt_cs6101/data/iwslt_2015_en_vn/vocab.en
+  target_vocabulary: /home/s.ang/nmt_cs6101/data/iwslt_2015_en_vn/vocab.vi
+
+
+train:
+  batch_size: 64  
+  # (optional) Maximum training step. If not set, train forever.
+  max_step: 30000
+  # (optional) If true, makes a single pass over the training data (default: false).
+  single_pass: false
+
+  # (optional) The maximum length of feature sequences during training (default: null).
+  maximum_features_length: 50
+  # (optional) The maximum length of label sequences during training (default: null).
+  maximum_labels_length: 50
+
+  # (optional) The width of the length buckets to select batch candidates from.
+  # A smaller value means less padding and increased efficiency. (default: 1).
+  length_bucket_width: 1
+
+  # (optional) The number of elements from which to sample during shuffling (default: 500000).
+  # Set 0 or null to disable shuffling, -1 to match the number of training examples.
+  sample_buffer_size: 500000
+
+  # (optional) Number of checkpoints to average at the end of the training to the directory
+  # model_dir/avg (default: 0).
+  average_last_checkpoints: 3
+
+params:
+  optimizer: "Adam"
+  learning_rate: 0.0002
+
